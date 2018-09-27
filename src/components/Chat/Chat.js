@@ -8,15 +8,19 @@ class Chat extends Component {
     messages: [],
     messageInput: ''
   };
+
   componentDidUpdate() {
     this.scrollToBottom();
   }
+
   changeInputMessage = e => {
     this.setState({ messageInput: e.target.value });
   };
+
   sendMessageOnEnter = e => {
     if (e.key === 'Enter') {
       const { messages, messageInput } = this.state;
+
       if (!this.validate(messageInput)) {
         return;
       }
@@ -26,6 +30,7 @@ class Chat extends Component {
       });
     }
   };
+
   validate = text => !!text;
 
   scrollToBottom() {
@@ -33,12 +38,15 @@ class Chat extends Component {
       this.el.scrollIntoView({ block: 'end', behavior: 'smooth' });
     }
   }
+
   renderMessages = () => {
     const { messages } = this.state;
+
     return messages.map(message => (
       <Message key={uniqueId()} text={message.text} />
     ));
   };
+
   render() {
     const { messageInput } = this.state;
 
